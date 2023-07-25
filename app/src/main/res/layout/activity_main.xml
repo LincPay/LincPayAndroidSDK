@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edMid"
+        android:hint="MID"
+
+        android:text="SWIPEPROD100007"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:imeOptions="actionNext"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edenckey"
+        android:hint="Enc. Key"
+        android:text="9503f982f1054a1a9fd891cf9ac2dc2c"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:imeOptions="actionNext"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/edorderNo"
+        android:hint="Order No."
+
+        android:text="Order 1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:imeOptions="actionNext"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/edAmount"
+        android:hint="Amount"
+
+        android:text="105"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:imeOptions="actionNext"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/edCurrency"
+        android:hint="Currency"
+
+        android:text="INR"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:imeOptions="actionNext"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/edRequestType"
+        android:hint="Request Type"
+
+        android:text="slupi"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:imeOptions="actionNext"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/edEmail"
+        android:hint="Email"
+
+        android:text="abc@gmail.com"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:imeOptions="actionNext"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/edMobileNumber"
+        android:hint="Mobile Number"
+
+        android:text="7259540731"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:imeOptions="actionNext"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+    <Button
+        android:id="@+id/btn"
+        android:text="Payment Request"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:imeOptions="actionNext"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/tvResponse"
+             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" >
+
+
+        </TextView>
+</LinearLayout>
+</ScrollView>
