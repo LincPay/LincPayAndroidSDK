@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    //    setContentView(R.layout.activity_main);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -47,29 +46,16 @@ public class MainActivity extends AppCompatActivity {
                 checkout.setKeyID("<YOUR_KEY_ID>");
 
                 /**
-                 * Pass your payment options to the Razorpay Checkout as a JSONObject
+                 * Pass your payment options to the LincPay Checkout as a JSONObject
                  */
                 try {
                     JSONObject options = new JSONObject();
-                    //upi://pay?
-                    // ver=01
-                    // &mode=15
-                    // &am=100.00
-                    // &mam=100.00
-                    // &cu=INR
-                    // &pa=zene.anubhav@timecosmos
-                    // &pn=aditya&mc=8299
-                    // &tr=Zenex61676459674421637832
-                    // &tn=QR%20SIT%20Testing
-                    // &mid=ZENEX001
-                    // &msid=ZENEX001-ANUBHAV
-                    // &mtid=ZENEX001-001
                     options.put("emailId", binding.edEmail.getText().toString().trim());
                     options.put("mobileNo", binding.edMobileNumber.getText().toString().trim());
                     options.put("mid", binding.edMid.getText().toString());
                     options.put("enckey", binding.edenckey.getText().toString());
                     options.put("orderNo", binding.edorderNo.getText().toString().trim());
-                    options.put("amount", binding.edAmount.getText().toString().trim());//from response of step 3.
+                    options.put("amount", binding.edAmount.getText().toString().trim());
                     options.put("currency", binding.edCurrency.getText().toString().trim());
                     options.put("txnReqType", binding.edRequestType.getText().toString().trim());
                     options.put("respUrl", "www.google.com");//pass amount in currency subunits
@@ -84,25 +70,17 @@ public class MainActivity extends AppCompatActivity {
                         public void onSuccess(Object object) {
                             if (object instanceof PaymentRequestResponse) {
                                 PaymentRequestResponse paymentRequestResponse= (PaymentRequestResponse) object;
-                                Log.e("message", "Success in starting Razorpay Checkout" + new Gson().toJson(paymentRequestResponse));
+
                                 Uri uri = Uri.parse(paymentRequestResponse.getUpiString());
 
 
-                                Log.e("onActivityResult ", "URI CIde " + uri);
-              /*  Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-                startActivity(browserIntent);*/
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setData(uri);
-                                //startActivity(intent);
                                 // will always show a dialog to user to choose an app
                                 Intent chooser = Intent.createChooser(intent, "Pay with");
 
                                 // check if intent resolves
-              /*  if(null != chooser.resolveActivity(getPackageManager())) {
-                    startActivityForResult(chooser, 1);
-                } else {
-                    Toast.makeText(GatewayActivity.this,"No UPI app found, please install one to continue",Toast.LENGTH_SHORT).show();
-                }*/
+
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                     chooser.putExtra("mid",paymentRequestResponse.getMid());
                                     chooser.putExtra("txnId",paymentRequestResponse.getTxnId());
@@ -116,12 +94,12 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void onError(String message) {
-                            Log.e(message, "Error in starting Razorpay Checkout");
+                            Log.e(message, "Error in starting LincPay Checkout");
                         }
                     });
 
                 } catch (JSONException e) {
-                    Log.e("Exception", "Error in starting Razorpay Checkout");
+                    Log.e("Exception", "Error in starting LincPay Checkout");
                 }
             }
         });
@@ -140,9 +118,11 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(Object object) {
                 if(object instanceof TransactionStatusResponse){
                     TransactionStatusResponse response= (TransactionStatusResponse) object;
-                    Log.e("message", "Success in starting Razorpay Checkout"+new Gson().toJson(response));
-                    if(response.getOrderData()!=null && response.getOrderData().size()>0){
+                    if(requestCode==1 && response.getOrderData()!=null && response.getOrderData().size()>0){
 
+                        // Case Success: response.getOrderData().get(0).getTxnresponseCode()==200
+                        // Case failed: response.getOrderData().get(0).getTxnresponseCode()==99
+                        // Case Not Initiated: response.getOrderData().get(0).getTxnresponseCode()==198
                         binding.tvResponse.setText("Payment resposne: "+response.getOrderData().get(0).getTxnStatus()+" , Code: "+response.getOrderData().get(0).getTxnresponseCode());
 
                     }else {
@@ -158,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onError(String message) {
-                Log.e(message, "Error in starting Razorpay Checkout");
+                Log.e(message, "Error in Lincpay checkTransactionStatus");
             }
         });
 
